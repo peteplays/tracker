@@ -17,7 +17,7 @@ npm-debug.log
 
 # IDE - VSCode
 .vscode/*
-!.vscode/settings.example.json
-!.vscode/tasks.example.json
-!.vscode/launch.example.json
-!.vscode/extensions.example.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
