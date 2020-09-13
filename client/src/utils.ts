@@ -1,4 +1,4 @@
-import { IData, ICoordinates } from './gmap';
+import { IData } from './gmap';
 
 export const displayTime = (time: string) => {
   const hour = +time.split(':')[0];
@@ -19,20 +19,6 @@ export const displayDate = (date: string) => {
   return `${removeLeadingZero(month)}/${removeLeadingZero(day)}/${year.slice(2)}`;
 }
 
-export const flattenData = (data: IData) => {
-  return Object.entries(data).flatMap(([date, d]) =>
-    Object.entries(d).map(([time, { lat, lng }]) => ({
-      dateTime: `${displayDate(date)} - ${displayTime(time)}`,
-      coords: { lat, lng }
-    }))
-  );
-};
-
 export const getAllCoordinates = (data: IData) => {
-  return Object.entries(data).reduce((acc: ICoordinates[], [date, timeAndCoords]) => {
-    const c = Object.entries(timeAndCoords).map(([time, coords]) => coords);
-    acc.push(...c)
-
-    return acc;
-  }, []);
+  return Object.entries(data.times).map(([time, { lat, lng }]) => ({ lat, lng }));
 }

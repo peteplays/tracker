@@ -4,16 +4,17 @@ import React, { useState } from 'react'
 import { GoogleMap, useLoadScript, Marker, Polyline, InfoWindow, Circle } from '@react-google-maps/api';
 
 import { config } from './config';
-import { flattenData, getAllCoordinates, displayDate } from './utils';
+import { getAllCoordinates, displayDate, displayTime } from './utils';
 
 import { sampleData } from './sampleData';
 
 import homeImage from './assets/images/home.svg';
 
 export interface IData {
-  [date: string]: {
-    [time: string]: ICoordinates
-  }
+  date: string;
+  times: {
+    [time: string]: ICoordinates;
+  };
 };
 
 export interface ICoordinates {
@@ -26,13 +27,8 @@ export interface IDisplayData {
   coords: ICoordinates;
 }
 
-const home = {
-  lat: config.homeLat,
-  lng: config.homeLng
-};
-
 const dbData = sampleData;
-const allDates = Object.keys(dbData);
+const allDates = dbData.map(({ date }) => date);
 
 const GMapLoading = () => {
   const { isLoaded, loadError } = useLoadScript({
@@ -41,39 +37,39 @@ const GMapLoading = () => {
 
   const [showLabel, setShowLabel] = useState(false);
   const [dateInput, setDateInput] = useState(allDates[0]);
-  const [data, setData] = useState({ [dateInput]: dbData[dateInput] })
-  const [selectedCoordinates, setSelectedCoordinates] = useState(getAllCoordinates({ [allDates[0]]: dbData[allDates[0]] }));
+  const [data, setData] = useState<IData>(dbData[0])
+  const [selectedCoordinates, setSelectedCoordinates] = useState<ICoordinates[]>(getAllCoordinates(data));
 
   const setSelect = (date: string) => {
-    const dateAndDataObj = { [date]: dbData[date] };
+    const selectedDateData = dbData.filter(d => d.date === date)[0];
 
     setDateInput(date);
-    setData(dateAndDataObj);
-    setSelectedCoordinates(getAllCoordinates(dateAndDataObj));
+    setData(selectedDateData);
+    setSelectedCoordinates(getAllCoordinates(selectedDateData));
   }
 
   const render = () =>
     <GoogleMap
       id='map'
-      center={selectedCoordinates[Math.floor(selectedCoordinates.length / 2)]}
+      // center={selectedCoordinates[Math.floor(selectedCoordinates.length / 2)]}
+      center={selectedCoordinates[0]}
       zoom={15}
       onClick={() => showLabel ? setShowLabel(false) : undefined}
       options={{
-        styles: config.mapStyle as google.maps.MapTypeStyle[]
+        styles: config.mapStyle as google.maps.MapTypeStyle[],
       }}
     >
       <>
         <Marker
-          position={{ ...home }}
+          position={{ ...config.homeLatLng }}
           icon={homeImage}
         />
 
         <InfoWindow
-          position={{ ...home }}
+          position={selectedCoordinates[0]}
           // onCloseClick={() => setShowLabel(false)}
           options={{
-            // pixelOffset: new google.maps.Size(0, -40),
-            pixelOffset: new google.maps.Size(300, -140),
+            pixelOffset: new google.maps.Size(0, -40),
           }}
         >
           <div className='infoWindow-input'>
@@ -92,10 +88,10 @@ const GMapLoading = () => {
           </div>
         </InfoWindow>
 
-        {flattenData(data).map(({ dateTime, coords }: IDisplayData, i) =>
+        {Object.entries(data.times).map(([time, { lat, lng }], i) =>
           <div key={i}>
             <Circle
-              center={{ ...coords }}
+              center={{ lat, lng }}
               options={{
                 strokeColor: '#059',
                 strokeOpacity: 0.8,
@@ -109,11 +105,11 @@ const GMapLoading = () => {
 
             {showLabel &&
               <InfoWindow
-                position={{ ...coords }}
+                position={{ lat, lng }}
                 onCloseClick={() => setShowLabel(false)}
               >
                 <div className='infoWindow-dateTime'>
-                  <p>{dateTime}</p>
+                <p>{displayDate(data.date)} - {displayTime(time)}</p>
                 </div>
               </InfoWindow>
             }

@@ -1,7 +1,6 @@
 export const config = {
   apiKey: 'AIzaSyAJ7pRzrXvkLCaef5VGKhPNfOgp2hfCzp4',
-  homeLat: 32.886610,
-  homeLng: -80.102410,
+  homeLatLng: { lat: 32.781768, lng: -79.985739 },
   mapStyle: [
     {
       elementType: 'geometry',

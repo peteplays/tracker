@@ -12,15 +12,20 @@
 }
 
 .infoWindow-input {
-  height: 50;
+  margin-left: 8px;
   padding: 5px;
+  text-align: center;
+
+  select {
+    border-radius: 4px;
+  }
 }
 
 .infoWindow-dateTime {
   height: 14px;
 
   p {
-    margin: 3px 0 0 5px;
+    margin: 3px 0 0 8px;
     padding-left: 3px;
   }
 }

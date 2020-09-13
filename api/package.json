@@ -1,0 +1,35 @@
+{
+  "name": "tracker-api",
+  "version": "0.1.0",
+  "description": "mongo stitch api",
+  "main": "dist/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "prestart": "npm run build",
+    "start": "node .",
+    "dev": "nodemon src/index.ts",
+    "test": "npm test"
+  },
+  "keywords": [
+    "mongo",
+    "stitch",
+    "api",
+    "tracker"
+  ],
+  "author": "peteplays",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongodb-stitch-server-sdk": "^4.8.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.7",
+    "@types/express": "^4.17.8",
+    "@types/node": "^14.10.1",
+    "nodemon": "^2.0.4",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.2"
+  }
+}
