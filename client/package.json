@@ -24,8 +24,7 @@
     "@types/react-redux": "^7.1.9"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "prod": "REACT_APP_STAGE=prod react-scripts start",
+    "start": "REACT_APP_STAGE=prod react-scripts start",
     "dev": "REACT_APP_STAGE=dev react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -45,8 +44,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "engines": {
-    "node": "14.x"
   }
 }
