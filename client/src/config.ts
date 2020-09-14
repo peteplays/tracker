@@ -268,10 +268,10 @@ const prod = {
 
 const getStage = () => {
   switch (process.env.REACT_APP_STAGE) {
-    case 'prod':
-      return prod;
-    default:
+    case 'dev':
       return dev;
+    default:
+      return prod;
   }
 }
 
