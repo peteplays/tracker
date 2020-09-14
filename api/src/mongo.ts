@@ -60,7 +60,7 @@ export const login = () => {
     .auth
     .loginWithCredential(new AnonymousCredential())
     // .then(getData)
-    .catch(console.error);
+    .catch(error => {error});
 };
 
 
