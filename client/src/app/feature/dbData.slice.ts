@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import environment from '../config';
+import environment from '../../config';
 import { AppThunk, RootState } from '../store';
 
 interface IState {

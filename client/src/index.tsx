@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 
 import * as serviceWorker from './serviceWorker';
 
-import App from './app';
-import { store } from './store';
+import App from './app/app';
+import { store } from './app/store';
 
 import './index.scss';
 

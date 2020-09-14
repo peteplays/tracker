@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { GoogleMap, useLoadScript, Marker, Polyline, InfoWindow, Circle } from '@react-google-maps/api';
 
-import { config } from '../config';
+import { config } from '../../config';
 import { getAllCoordinates, displayDate, displayTime } from '../utils';
 import { ICoordinates, IData } from './dbData.slice';
 
 // import { sampleData } from '../sampleData';
 
-import homeImage from '../assets/images/home.svg';
+import homeImage from '../../assets/images/home.svg';
 
 export interface IDisplayData {
   dateTime: string;

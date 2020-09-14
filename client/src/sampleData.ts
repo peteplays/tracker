@@ -1,4 +1,4 @@
-import { IData } from './feature/dbData.slice';
+import { IData } from './app/feature/dbData.slice';
 
 export const sampleData: IData[] = [
   {
