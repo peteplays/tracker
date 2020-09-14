@@ -1,4 +1,4 @@
-import { IData } from './gmap';
+import { IData } from './feature/dbData.slice';
 
 export const displayTime = (time: string) => {
   const hour = +time.split(':')[0];

@@ -1,8 +1,7 @@
-import { IData } from './gmap';
+import { IData } from './feature/dbData.slice';
 
 export const sampleData: IData[] = [
   {
-
     date: "2020-09-05",
     times: {
       "04:15:25": {

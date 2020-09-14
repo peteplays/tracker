@@ -1,44 +1,31 @@
-/* global google */
-
 import React, { useState } from 'react'
 import { GoogleMap, useLoadScript, Marker, Polyline, InfoWindow, Circle } from '@react-google-maps/api';
 
-import { config } from './config';
-import { getAllCoordinates, displayDate, displayTime } from './utils';
+import { config } from '../config';
+import { getAllCoordinates, displayDate, displayTime } from '../utils';
+import { ICoordinates, IData } from './dbData.slice';
 
-import { sampleData } from './sampleData';
+// import { sampleData } from '../sampleData';
 
-import homeImage from './assets/images/home.svg';
-
-export interface IData {
-  date: string;
-  times: {
-    [time: string]: ICoordinates;
-  };
-};
-
-export interface ICoordinates {
-  lat: number;
-  lng: number;
-}
+import homeImage from '../assets/images/home.svg';
 
 export interface IDisplayData {
   dateTime: string;
   coords: ICoordinates;
 }
 
-const dbData = sampleData;
-const allDates = dbData.map(({ date }) => date);
+const GMap = ({ dbData }: { dbData: IData[] }) => {
+  // const dbData: IData[] = sampleData;
 
-const GMapLoading = () => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: config.apiKey
   });
 
-  const [showLabel, setShowLabel] = useState(false);
-  const [dateInput, setDateInput] = useState(allDates[0]);
   const [data, setData] = useState<IData>(dbData[0])
-  const [selectedCoordinates, setSelectedCoordinates] = useState<ICoordinates[]>(getAllCoordinates(data));
+  const allDates = dbData.map(({ date }) => date);
+  const [dateInput, setDateInput] = useState(allDates[0]);
+  const [selectedCoordinates, setSelectedCoordinates] = useState<ICoordinates[]>(getAllCoordinates(dbData[0]));
+  const [showLabel, setShowLabel] = useState(false);
 
   const setSelect = (date: string) => {
     const selectedDateData = dbData.filter(d => d.date === date)[0];
@@ -51,7 +38,6 @@ const GMapLoading = () => {
   const render = () =>
     <GoogleMap
       id='map'
-      // center={selectedCoordinates[Math.floor(selectedCoordinates.length / 2)]}
       center={selectedCoordinates[0]}
       zoom={15}
       onClick={() => showLabel ? setShowLabel(false) : undefined}
@@ -109,7 +95,7 @@ const GMapLoading = () => {
                 onCloseClick={() => setShowLabel(false)}
               >
                 <div className='infoWindow-dateTime'>
-                <p>{displayDate(data.date)} - {displayTime(time)}</p>
+                  <p>{displayDate(data.date)} - {displayTime(time)}</p>
                 </div>
               </InfoWindow>
             }
@@ -134,13 +120,13 @@ const GMapLoading = () => {
           }}
         />
       </>
-    </GoogleMap>
+    </GoogleMap>;
 
   if (loadError) {
     return <p>Map cannot be loaded right now...</p>
   }
 
-  return isLoaded ? render() : <p>Loading... </p>
+  return isLoaded ? render() : <p className='loading'>Loading</p>
 };
 
-export default GMapLoading;
+export default GMap;

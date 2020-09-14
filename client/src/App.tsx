@@ -1,9 +1,9 @@
 import React from 'react';
 
-import GMap from './gmap';
+import Loading from './feature/loading';
 
-import './App.scss';
+import './app.scss';
 
-const App = () => <GMap />
+const App = () => <Loading />
 
 export default App;

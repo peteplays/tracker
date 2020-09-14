@@ -251,3 +251,30 @@ export const config = {
     }
   ],
 };
+
+const dev = {
+  env: 'dev',
+  api: {
+    URL: 'http://localhost:5555',
+  },
+};
+
+const prod = {
+  env: 'prod',
+  api: {
+    URL: 'http://localhost:9999'
+  },
+};
+
+const getStage = () => {
+  switch (process.env.REACT_APP_STAGE) {
+    case 'prod':
+      return prod;
+    default:
+      return dev;
+  }
+}
+
+export default {
+  ...getStage(),
+};
