@@ -262,7 +262,7 @@ const dev = {
 const prod = {
   env: 'prod',
   api: {
-    URL: 'http://localhost:9999'
+    URL: 'https://map-tracker-api.herokuapp.com'
   },
 };
 
