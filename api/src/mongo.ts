@@ -12,14 +12,19 @@ const db = mongodb.db(config.db);
 export const getData = async (date?: string) => {
   const find = date ? { date }: {};
 
-  const r = await db
-    .collection(config.collection)
-    .find(find, { limit: 1000 })
-    .asArray();
+  try {
+    const r = await db
+      .collection(config.collection)
+      .find(find, { limit: 1000 })
+      .asArray();
 
-  client.close();
+    client.close();
 
-  return r;
+    return r;
+  } catch (error) {
+    console.log({ error });
+    client.close();
+  }
 };
 
 // db.Track.updateOne(
@@ -28,18 +33,23 @@ export const getData = async (date?: string) => {
 //  { upsert: true }
 // )
 export const addPoint = async (date: string, time: string, lat: number, lng: number) => {
-  const r = await db
-    .collection(config.collection)
-    .updateOne(
-      { date },
-      { $set: { [`times.${time}`]: { lat, lng } } },
-      { upsert: true },
-    );
+  try {
+    const r = await db
+      .collection(config.collection)
+      .updateOne(
+        { date },
+        { $set: { [`times.${time}`]: { lat, lng } } },
+        { upsert: true },
+      );
 
-  client.close();
+    client.close();
 
-  return r;
-}
+    return r;
+  } catch (error) {
+    console.log({ error });
+    client.close();
+  }
+};
 
 export const login = () => {
   client
@@ -47,6 +57,6 @@ export const login = () => {
     .loginWithCredential(new AnonymousCredential())
     // .then(getData)
     .catch(console.error);
-}
+};
 
 
