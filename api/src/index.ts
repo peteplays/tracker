@@ -23,5 +23,5 @@ app.use((_, res, next) => {
 routes(app);
 
 app.listen(port, () => {
-  console.log(`server started at http://localhost:${port}`);
+  console.log(`server started on port: ${port}`);
 });

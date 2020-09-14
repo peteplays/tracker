@@ -13,6 +13,8 @@ export const getData = async (date?: string) => {
   const find = date ? { date }: {};
 
   try {
+    login();
+
     const r = await db
       .collection(config.collection)
       .find(find, { limit: 1000 })
@@ -34,6 +36,8 @@ export const getData = async (date?: string) => {
 // )
 export const addPoint = async (date: string, time: string, lat: number, lng: number) => {
   try {
+    login();
+
     const r = await db
       .collection(config.collection)
       .updateOne(
