@@ -9,6 +9,9 @@ coverage
 # production
 dist
 
+# builds
+build
+
 # misc
 .DS_Store
 .env
