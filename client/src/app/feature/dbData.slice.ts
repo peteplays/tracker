@@ -2,24 +2,12 @@ import { createSlice } from '@reduxjs/toolkit'
 
 import environment from '../../config';
 import { AppThunk, RootState } from '../store';
+import { IData } from '@peteplays/daily-map-tracker';
 
 interface IState {
   loading: boolean;
   errorMessage?: string;
   data: IData[];
-}
-
-export interface IData {
-  _id?: any;
-  date: string;
-  times: {
-    [time: string]: ICoordinates;
-  };
-};
-
-export interface ICoordinates {
-  lat: number;
-  lng: number;
 }
 
 const initialState: IState = {

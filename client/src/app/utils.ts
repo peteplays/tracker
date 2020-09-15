@@ -1,4 +1,4 @@
-import { IData } from './feature/dbData.slice';
+import { IData } from '@peteplays/daily-map-tracker';
 
 export const displayTime = (time: string) => {
   const hour = +time.split(':')[0];

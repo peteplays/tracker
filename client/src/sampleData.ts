@@ -1,4 +1,4 @@
-import { IData } from './app/feature/dbData.slice';
+import { IData } from '@peteplays/daily-map-tracker';
 
 export const sampleData: IData[] = [
   {

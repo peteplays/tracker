@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { dbDataSelector, fetchDBData } from './dbData.slice';
 import { Error } from '../shared';
-import GMap from './gmap';
+import DailyMapTracker from '@peteplays/daily-map-tracker';
 
 import './loading.scss';
 
@@ -17,7 +17,7 @@ const Loading = () => {
 
   if (loading) return <p className='loading'>Loading</p>;
   if (errorMessage) return <Error message={errorMessage} />;
-  if (!!data.length) return <GMap dbData={data} />;
+  if (!!data.length) return <DailyMapTracker dbData={data} />;
 
   return <p className='loading'>Nothing to see here</p>
 }
