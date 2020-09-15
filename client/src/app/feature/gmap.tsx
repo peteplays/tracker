@@ -5,7 +5,9 @@ import { config } from '../../config';
 import { getAllCoordinates, displayDate, displayTime } from '../utils';
 import { ICoordinates, IData } from './dbData.slice';
 
-// import { sampleData } from '../sampleData';
+// import { sampleData } from '../../sampleData';
+
+import './gmap.scss';
 
 import homeImage from '../../assets/images/home.svg';
 
@@ -15,7 +17,8 @@ export interface IDisplayData {
 }
 
 const GMap = ({ dbData }: { dbData: IData[] }) => {
-  // const dbData: IData[] = sampleData;
+// const GMap = () => {
+//   const dbData: IData[] = sampleData;
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: config.apiKey
