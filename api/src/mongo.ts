@@ -17,7 +17,7 @@ export const getData = async (date?: string) => {
 
     const r = await db
       .collection(config.collection)
-      .find(find, { limit: 1000 })
+      .find(find, { limit: 1000, sort: { date: 1 } })
       .asArray();
 
     client.close();
