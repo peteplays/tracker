@@ -1,6 +1,7 @@
 import { Express } from 'express';
 
 import { getData, addPoint } from './mongo';
+import { formatDate, formatTime, getLatLng } from './utils';
 
 export const routes = (app: Express) => {
   app.get('/', (_, res) => {
@@ -14,12 +15,15 @@ export const routes = (app: Express) => {
   });
 
   app.post('/add', async (req, res) => {
-    const { date, time, lat, lng } = req.body;
+    const { date, time, latLng, type } = req.body;
+    console.log(date, time, latLng, type);
 
-    if (!date || !time || !lat || !lng) {
-      return res.send('Error: date, time, lat, lng are required');
+    if (!date || !time || !latLng || !type ) {
+      return res.send('Error: date, time, latLng are required');
     }
 
-    res.json(await addPoint(String(date), String(time), Number(lat), Number(lng)))
+    const { lat, lng } = getLatLng(latLng);
+
+    res.json(await addPoint(formatDate(date), formatTime(time), Number(lat), Number(lng), type))
   });
 };

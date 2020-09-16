@@ -34,7 +34,7 @@ export const getData = async (date?: string) => {
 //  { $set: { "times.04:17:37": { "lat": 32.78661, "lng": -80.01241 } } },
 //  { upsert: true }
 // )
-export const addPoint = async (date: string, time: string, lat: number, lng: number) => {
+export const addPoint = async (date: string, time: string, lat: number, lng: number, type: string) => {
   try {
     login();
 
@@ -42,7 +42,12 @@ export const addPoint = async (date: string, time: string, lat: number, lng: num
       .collection(config.collection)
       .updateOne(
         { date },
-        { $set: { [`times.${time}`]: { lat, lng } } },
+        {
+          $set: {
+            type,
+            [`times.${time}`]: { lat, lng }
+          }
+        },
         { upsert: true },
       );
 
