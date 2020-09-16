@@ -16,7 +16,6 @@ export const routes = (app: Express) => {
 
   app.post('/add', async (req, res) => {
     const { date, time, latLng, type } = req.body;
-    console.log(date, time, latLng, type);
 
     if (!date || !time || !latLng || !type ) {
       return res.send('Error: date, time, latLng are required');

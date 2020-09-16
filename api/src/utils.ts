@@ -8,7 +8,7 @@ export const getDate = (date?: string) => {
 };
 
 export const formatDate = (date: string) => {
-  const [day, month, year] = date.split('-');
+  const [month, day, year] = date.split('-');
 
   return `20${year}-${addLeadingZero(month)}-${addLeadingZero(day)}`;
 };
