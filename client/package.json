@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "dependencies": {
     "@googlemaps/google-maps-services-js": "^3.1.6",
-    "@peteplays/daily-map-tracker": "^1.0.2",
+    "@peteplays/daily-map-tracker": "^1.0.4",
     "@react-google-maps/api": "^1.10.0",
     "@reduxjs/toolkit": "^1.4.0",
     "node-sass": "^4.14.1",
