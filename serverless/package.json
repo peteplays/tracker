@@ -41,5 +41,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "Tracker app",
+  "repository": {
+    "url": "https://github.com/peteplays/tracker/tree/master/serverless"
+  },
+  "license": "ISC"
 }
