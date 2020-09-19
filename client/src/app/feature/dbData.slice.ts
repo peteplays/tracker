@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { IData } from '@peteplays/daily-map-tracker';
 
 import environment from '../../config';
 import { AppThunk, RootState } from '../store';
-import { IData } from '@peteplays/daily-map-tracker';
 
 interface IState {
   loading: boolean;

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import DailyMapTracker from '@peteplays/daily-map-tracker';
 
 import { dbDataSelector, fetchDBData } from './dbData.slice';
 import { Error } from '../shared';
-import DailyMapTracker from '@peteplays/daily-map-tracker';
 
 import './loading.scss';
 

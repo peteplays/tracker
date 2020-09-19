@@ -4,6 +4,8 @@ import { Stitch, AnonymousCredential, RemoteMongoClient } from 'mongodb-stitch-b
 
 import { config } from './config';
 
+import './app.scss';
+
 const App = () => {
   const [data, setData] = useState<IData[]>([]);
 
@@ -11,7 +13,7 @@ const App = () => {
     const client = Stitch.initializeDefaultAppClient(config.clientName);
     const mongodb = client.getServiceClient(
       RemoteMongoClient.factory,
-      "mongodb-atlas"
+      'mongodb-atlas'
     );
     const db = mongodb.db(config.db);
 
