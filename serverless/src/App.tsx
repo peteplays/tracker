@@ -5,7 +5,7 @@ import ReactGA from 'react-ga';
 
 import { config } from './config';
 
-import './app.scss';
+import './App.scss';
 
 const App = () => {
   const [data, setData] = useState<IData[]>([]);
