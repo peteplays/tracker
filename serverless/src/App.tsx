@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DailyMapTracker, { IData } from '@peteplays/daily-map-tracker';
 import { Stitch, AnonymousCredential, RemoteMongoClient } from 'mongodb-stitch-browser-sdk';
+import ReactGA from 'react-ga';
 
 import { config } from './config';
 
@@ -10,6 +11,9 @@ const App = () => {
   const [data, setData] = useState<IData[]>([]);
 
   useEffect(() => {
+    ReactGA.initialize(config.ga);
+    ReactGA.pageview(window.location.pathname);
+
     const client = Stitch.initializeDefaultAppClient(config.clientName);
     const mongodb = client.getServiceClient(
       RemoteMongoClient.factory,
