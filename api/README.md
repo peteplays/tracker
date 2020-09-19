@@ -8,7 +8,7 @@
 ## End points
 `/` returns welcome messages
 
-`/data` returns data `IData[]` structure
+`/data` returns data in `IData[]` structure
 
 `/add` added data in _`Tasker`_ structure
 
