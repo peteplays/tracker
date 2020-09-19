@@ -39,9 +39,9 @@ interface Tasker {
 ## Tasker Data Example
 ```
 {
-  date: 3.15; | h.m
-  time: 12-14-20; | m-d-yy
-  latLng: 90.943049,-23.3435343; | lat,lng
-  type: bike; | any
+  date: 3.15, | h.m
+  time: 12-14-20, | m-d-yy
+  latLng: 90.943049,-23.3435343, | lat,lng
+  type: bike, | any
 }
 ```
